@@ -1,0 +1,14 @@
+INFO     pages.login_page:login_page.py:15 Logging in with username: standard_user
+INFO     pages.inventory_page:inventory_page.py:24 Verifying inventory page
+INFO     pages.inventory_page:inventory_page.py:31 Adding backpack to cart
+INFO     pages.inventory_page:inventory_page.py:37 Opening cart
+INFO     pages.cart_page:cart_page.py:18 Opening cart
+INFO     pages.cart_page:cart_page.py:22 Verifying cart page
+INFO     pages.cart_page:cart_page.py:28 Verifying backpack is in cart
+INFO     pages.cart_page:cart_page.py:34 Proceeding to checkout
+INFO     pages.checkout_page:checkout_page.py:18 Verifying checkout page
+INFO     pages.checkout_page:checkout_page.py:29 Entering checkout information
+INFO     pages.checkout_page:checkout_page.py:35 Continuing checkout
+INFO     pages.checkout_page:checkout_page.py:39 Verifying checkout overview page
+INFO     pages.checkout_page:checkout_page.py:45 Finishing checkout
+INFO     pages.checkout_page:checkout_page.py:51 Verifying checkout complete page
