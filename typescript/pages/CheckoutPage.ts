@@ -1,23 +1,26 @@
 import { Page, Locator, expect, test } from '@playwright/test';
 
 export class CheckoutPage {
-    firstName: Locator;
-    lastName: Locator;
-    postalCode: Locator;
-    continueButton: Locator;
+    readonly firstNameField: Locator;
+    readonly lastNameField: Locator;
+    readonly postalCodeField: Locator;
+    readonly continueButton: Locator;
+    readonly finishButton: Locator;
 
     constructor(private page: Page) {
-        this.firstName = page.locator('[data-test="firstName"]');
-        this.lastName = page.locator('[data-test="lastName"]');
-        this.postalCode = page.locator('[data-test="postalCode"]');
-        this.continueButton = page.locator('[data-test="continue"]');
+        this.firstNameField = page.getByPlaceholder('First Name');
+        this.lastNameField = page.getByPlaceholder('Last Name');
+        this.postalCodeField = page.getByPlaceholder('Zip/Postal Code');
+
+        this.continueButton = page.getByTestId('continue');
+        this.finishButton = page.getByTestId('finish');
     }
 
     async enterInformation(firstName: string, lastName: string, postalCode: string) {
         await test.step('Enter checkout information', async () => {
-            await this.firstName.fill(firstName);
-            await this.lastName.fill(lastName);
-            await this.postalCode.fill(postalCode);
+            await this.firstNameField.fill(firstName);
+            await this.lastNameField.fill(lastName);
+            await this.postalCodeField.fill(postalCode);
             await this.continueButton.click();
         });
     }
@@ -38,9 +41,7 @@ export class CheckoutPage {
 
     async clickFinish() {
         await test.step('Click finish button', async () => {
-            await this.page
-                .locator('[data-test="finish"]')
-                .click();
+            await this.finishButton.click();
         });
     }
 

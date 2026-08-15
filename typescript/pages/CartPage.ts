@@ -1,7 +1,15 @@
-import { Page, expect, test } from '@playwright/test';
+import { Page, Locator, expect, test } from '@playwright/test';
 
 export class CartPage {
-    constructor(private page: Page) { }
+    readonly inventoryItemName: Locator;
+    readonly shoppingCartBadge: Locator;
+    readonly checkoutButton: Locator;
+
+    constructor(private page: Page) {
+        this.inventoryItemName = page.getByTestId('inventory-item-name');
+        this.shoppingCartBadge = page.getByTestId('shopping-cart-badge');
+        this.checkoutButton = page.getByTestId('checkout');
+    }
 
     async verifyCartURL() {
         await test.step('Verify cart URL', async () => {
@@ -12,20 +20,18 @@ export class CartPage {
     async checkInventoryItem() {
         await test.step('Verify inventory item in cart', async () => {
             await expect(
-                this.page.locator('[data-test="inventory-item-name"]'))
-                .toHaveText('Sauce Labs Backpack');
+                this.inventoryItemName
+            ).toHaveText('Sauce Labs Backpack');
 
             await expect(
-                this.page.locator('[data-test="shopping-cart-badge"]')
+                this.shoppingCartBadge
             ).toHaveText('1');
         });
     }
 
     async clickCheckout() {
         await test.step('Click checkout button', async () => {
-            await this.page
-                .locator('[data-test="checkout"]')
-                .click();
+            await this.checkoutButton.click();
         });
     }
 }
