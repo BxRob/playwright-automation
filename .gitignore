@@ -1,0 +1,29 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Python Playwright
+python/allure-results/
+python/allure-report/
+
+# TypeScript / Node
+typescript/node_modules/
+
+# Playwright test output
+typescript/test-results/
+typescript/playwright-report/
+typescript/blob-report/
+
+# Environment files
+.env
+.env.*
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

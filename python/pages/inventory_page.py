@@ -1,7 +1,6 @@
 from playwright.sync_api import Page, expect
-import logging
+import allure
 
-logger = logging.getLogger(__name__)
 
 class InventoryPage:
 
@@ -21,18 +20,19 @@ class InventoryPage:
         )
 
     def verify_inventory_page(self):
-        logger.info("Verifying inventory page")
-        expect(self.page).to_have_url(
-            "https://www.saucedemo.com/inventory.html"
-        )
-        expect(self.item_container).to_be_visible()
+        with allure.step("Verify inventory page is displayed"):
+            expect(self.page).to_have_url(
+                "https://www.saucedemo.com/inventory.html"
+            )
+            expect(self.item_container).to_be_visible()
 
     def add_backpack_to_cart(self):
-        logger.info("Adding backpack to cart")
-        self.backpack_button.click()
+        with allure.step("Add Sauce Labs Backpack to cart"):
+            self.backpack_button.click()
 
-        expect(self.shopping_cart_badge).to_have_text("1")
+        with allure.step("Verify cart contains one item"):
+            expect(self.shopping_cart_badge).to_have_text("1")
 
     def open_cart(self):
-        logger.info("Opening cart")
-        self.shopping_cart_link.click()
+        with allure.step("Open shopping cart"):
+            self.shopping_cart_link.click()
