@@ -2,7 +2,7 @@ from playwright.sync_api import Locator, Page, expect
 import allure
 
 
-class CheckoutPage:
+class CheckoutInformationPage:
 
     def __init__(self, page: Page):
         self.page: Page = page
@@ -28,19 +28,3 @@ class CheckoutPage:
     def continue_checkout(self):
         with allure.step("Continue checkout"):
             self.continue_button.click()
-
-    def verify_checkout_overview_page(self):
-        with allure.step("Verify checkout overview page"):
-            expect(self.page).to_have_url(
-                "https://www.saucedemo.com/checkout-step-two.html"
-            )
-
-    def finish_checkout(self):
-        with allure.step("Finish checkout"):
-            self.page.get_by_role("button", name="Finish").click()
-
-    def verify_checkout_complete_page(self):
-        with allure.step("Verify checkout complete page"):
-            expect(self.page).to_have_url(
-                "https://www.saucedemo.com/checkout-complete.html"
-            )
