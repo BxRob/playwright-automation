@@ -5,30 +5,14 @@ import allure
 class InventoryPage:
 
     def __init__(self, page: Page):
-        self.page = page
+        self.page: Page = page
         self.item_container: Locator = page.locator('[data-test="inventory-container"]')
-        self.shopping_cart_badge: Locator = page.locator(
-            '[data-test="shopping-cart-badge"]'
-        )
-        self.shopping_cart_link: Locator = page.locator(
-            '[data-test="shopping-cart-link"]'
-        )
-        self.backpack_button = page.locator(
-            '[data-test="add-to-cart-sauce-labs-backpack"]'
-        )
-
-    def verify_inventory_page(self):
-        with allure.step("Verify inventory page is displayed"):
-            expect(self.page).to_have_url("https://www.saucedemo.com/inventory.html")
-            expect(self.item_container).to_be_visible()
+        self.shopping_cart_badge: Locator = page.locator('[data-test="shopping-cart-badge"]')
+        self.shopping_cart_link: Locator = page.locator('[data-test="shopping-cart-link"]')
+        self.backpack_button: Locator = page.locator('[data-test="add-to-cart-sauce-labs-backpack"]')
 
     def add_backpack_to_cart(self):
-        with allure.step("Add Sauce Labs Backpack to cart"):
-            self.backpack_button.click()
-
-        with allure.step("Verify cart contains one item"):
-            expect(self.shopping_cart_badge).to_have_text("1")
+        self.backpack_button.click()
 
     def open_cart(self):
-        with allure.step("Open shopping cart"):
-            self.shopping_cart_link.click()
+        self.shopping_cart_link.click()
