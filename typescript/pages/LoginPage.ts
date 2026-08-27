@@ -1,4 +1,4 @@
-import { Page, Locator, test } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 
 export class LoginPage {
     readonly usernameField: Locator;
@@ -12,16 +12,8 @@ export class LoginPage {
     }
 
     async login(username: string, password: string) {
-        await test.step('Fill Username field', async () => {
-            await this.usernameField.fill(username);
-        });
-
-        await test.step('Fill Password field', async () => {
-            await this.passwordField.fill(password);
-        });
-
-        await test.step('Click Login button', async () => {
-            await this.loginButton.click();
-        });
+        await this.usernameField.fill(username);
+        await this.passwordField.fill(password);
+        await this.loginButton.click();
     }
 }
